@@ -1,0 +1,8 @@
+<svg width="800" height="600" viewBox="0 0 800 600" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="800" height="600" fill="#0B0B0B"/>
+  <rect x="40" y="40" width="720" height="520" rx="32" fill="#111827" stroke="#263F85" stroke-width="2"/>
+  <path d="M80 420 L240 260 L360 360 L520 200 L720 360" stroke="#DF682F" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+  <rect x="80" y="90" width="260" height="12" rx="6" fill="#263F85"/>
+  <rect x="80" y="120" width="200" height="10" rx="5" fill="#1F2F5F"/>
+  <text x="80" y="520" fill="#E5E7EB" font-size="24" font-family="Arial, sans-serif" letter-spacing="6">GATES</text>
+</svg>
