@@ -1,1 +1,4 @@
-{"version":1,"functions":{"/admin/gallery":{},"/about":{},"/gallery":{},"/contact":{},"/services":{}}}
+{
+  "version": 1,
+  "functions": {}
+}

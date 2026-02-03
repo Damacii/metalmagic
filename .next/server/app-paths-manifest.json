@@ -1,12 +1,13 @@
 {
+  "/_global-error/page": "app/_global-error/page.js",
   "/_not-found/page": "app/_not-found/page.js",
-  "/sitemap.xml/route": "app/sitemap.xml/route.js",
-  "/robots.txt/route": "app/robots.txt/route.js",
-  "/page": "app/page.js",
-  "/admin/page": "app/admin/page.js",
-  "/gallery/page": "app/gallery/page.js",
   "/about/page": "app/about/page.js",
   "/admin/gallery/page": "app/admin/gallery/page.js",
+  "/admin/page": "app/admin/page.js",
   "/contact/page": "app/contact/page.js",
-  "/services/page": "app/services/page.js"
+  "/gallery/page": "app/gallery/page.js",
+  "/page": "app/page.js",
+  "/robots.txt/route": "app/robots.txt/route.js",
+  "/services/page": "app/services/page.js",
+  "/sitemap.xml/route": "app/sitemap.xml/route.js"
 }

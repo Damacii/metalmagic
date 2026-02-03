@@ -1,1 +1,13 @@
-{"/_not-found/page":"/_not-found","/sitemap.xml/route":"/sitemap.xml","/robots.txt/route":"/robots.txt","/page":"/","/admin/page":"/admin","/gallery/page":"/gallery","/about/page":"/about","/admin/gallery/page":"/admin/gallery","/contact/page":"/contact","/services/page":"/services"}
+{
+  "/_global-error/page": "/_global-error",
+  "/_not-found/page": "/_not-found",
+  "/about/page": "/about",
+  "/admin/gallery/page": "/admin/gallery",
+  "/admin/page": "/admin",
+  "/contact/page": "/contact",
+  "/gallery/page": "/gallery",
+  "/page": "/",
+  "/robots.txt/route": "/robots.txt",
+  "/services/page": "/services",
+  "/sitemap.xml/route": "/sitemap.xml"
+}
