@@ -2,10 +2,11 @@ export const ADMIN_EMAIL = 'admin@damacii.com';
 
 export const DEFAULT_GALLERY_CATEGORIES = [
   'Fences',
+  'Railing',
+  'Stairs',
   'Gates',
-  'Railings',
   'Security',
+  'Automatic Gate System',
   'Repairs',
-  'Custom Fabrication',
-  'Other'
+  'Others'
 ];

@@ -1,7 +1,7 @@
 'use client';
 
 import Image from 'next/image';
-import { useEffect, useMemo, useState } from 'react';
+import { type DragEvent, type MouseEvent, useEffect, useMemo, useState } from 'react';
 
 export type GalleryItem = {
   src: string;
@@ -15,6 +15,13 @@ type GalleryGridProps = {
 export default function GalleryGrid({ items }: GalleryGridProps) {
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
   const [hiddenSrcs, setHiddenSrcs] = useState<string[]>([]);
+  const handleContextMenu = (event: MouseEvent) => {
+    event.preventDefault();
+  };
+
+  const handleDragStart = (event: DragEvent) => {
+    event.preventDefault();
+  };
 
   useEffect(() => {
     if (activeIndex === null) return;
@@ -57,6 +64,9 @@ export default function GalleryGrid({ items }: GalleryGridProps) {
             key={`${item.src}-${index}`}
             type="button"
             onClick={() => setActiveIndex(index)}
+            onContextMenu={handleContextMenu}
+            onDragStart={handleDragStart}
+            style={{ WebkitTouchCallout: 'none' }}
             className="group relative mb-4 w-full break-inside-avoid overflow-hidden rounded-2xl border border-white/10 bg-white/5 text-left"
           >
             <Image
@@ -67,12 +77,24 @@ export default function GalleryGrid({ items }: GalleryGridProps) {
               sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
               quality={70}
               unoptimized
+              draggable={false}
+              onContextMenu={handleContextMenu}
+              onDragStart={handleDragStart}
               onError={() =>
                 setHiddenSrcs((prev) => (prev.includes(item.src) ? prev : [...prev, item.src]))
               }
-              className="h-auto w-full transition duration-500 group-hover:scale-[1.02]"
+              className="pointer-events-none h-auto w-full select-none transition duration-500 group-hover:scale-[1.02]"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+            <div
+              className="pointer-events-none absolute inset-0 opacity-10"
+              style={{
+                backgroundImage: "url('/gallery/logo metal magic white.png')",
+                backgroundRepeat: 'repeat',
+                backgroundSize: '140px 140px',
+                backgroundPosition: 'center'
+              }}
+            />
           </button>
         ))}
       </div>
@@ -81,6 +103,8 @@ export default function GalleryGrid({ items }: GalleryGridProps) {
           className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 px-4 py-10"
           role="dialog"
           aria-modal="true"
+          onContextMenu={handleContextMenu}
+          style={{ WebkitTouchCallout: 'none' }}
         >
           <button
             type="button"
@@ -100,6 +124,9 @@ export default function GalleryGrid({ items }: GalleryGridProps) {
                 sizes="(max-width: 768px) 95vw, 90vw"
                 unoptimized
                 loading="eager"
+                draggable={false}
+                onContextMenu={handleContextMenu}
+                onDragStart={handleDragStart}
                 onError={() => {
                   setHiddenSrcs((prev) =>
                     prev.includes(activeItem.src) ? prev : [...prev, activeItem.src]
@@ -109,8 +136,17 @@ export default function GalleryGrid({ items }: GalleryGridProps) {
                     return visibleItems.length > 1 ? (prev + 1) % visibleItems.length : null;
                   });
                 }}
-                className="h-auto max-h-[80vh] w-auto max-w-[90vw] rounded-2xl border border-white/10 object-contain"
+                className="pointer-events-none h-auto max-h-[80vh] w-auto max-w-[90vw] select-none rounded-2xl border border-white/10 object-contain"
                 priority
+              />
+              <div
+                className="pointer-events-none absolute inset-0 opacity-10"
+                style={{
+                  backgroundImage: "url('/gallery/logo metal magic white.png')",
+                  backgroundRepeat: 'repeat',
+                  backgroundSize: '180px 180px',
+                  backgroundPosition: 'center'
+                }}
               />
               <button
                 type="button"

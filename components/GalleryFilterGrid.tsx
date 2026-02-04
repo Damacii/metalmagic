@@ -3,6 +3,7 @@
 import { useEffect, useMemo, useState } from 'react';
 import GalleryGrid, { type GalleryItem } from '@/components/GalleryGrid';
 import { supabase } from '@/lib/supabaseClient';
+import { DEFAULT_GALLERY_CATEGORIES } from '@/lib/adminConfig';
 
 type GalleryFilterGridProps = {
   items: GalleryItem[];
@@ -14,6 +15,7 @@ type GalleryRow = {
 };
 
 export default function GalleryFilterGrid({ items }: GalleryFilterGridProps) {
+  const [storageItems, setStorageItems] = useState<GalleryItem[] | null>(null);
   const [categoryMap, setCategoryMap] = useState<Record<string, string>>({});
   const [activeFilter, setActiveFilter] = useState('All');
 
@@ -22,6 +24,22 @@ export default function GalleryFilterGrid({ items }: GalleryFilterGridProps) {
 
     let isMounted = true;
     const client = supabase;
+    const loadStorageItems = async () => {
+      const { data, error } = await client.storage.from('Fotos').list('', {
+        limit: 1000,
+        sortBy: { column: 'created_at', order: 'desc' }
+      });
+      if (!isMounted) return;
+      if (error) {
+        return;
+      }
+      const nextItems =
+        data?.map((file) => {
+          const { data: publicData } = client.storage.from('Fotos').getPublicUrl(file.name);
+          return { src: publicData.publicUrl, tags: ['Gallery'] };
+        }) ?? [];
+      setStorageItems(nextItems);
+    };
     const loadCategories = async () => {
       const { data, error } = await client.from('gallery_items').select('src, category');
       if (error || !data || !isMounted) return;
@@ -36,30 +54,64 @@ export default function GalleryFilterGrid({ items }: GalleryFilterGridProps) {
     };
 
     loadCategories();
+    loadStorageItems();
     return () => {
       isMounted = false;
     };
   }, []);
 
+  const baseItems = storageItems ?? items;
+
+  const filenameCategoryMap = useMemo(() => {
+    const map: Record<string, string> = {};
+    Object.entries(categoryMap).forEach(([src, category]) => {
+      try {
+        const url = new URL(src);
+        const filename = decodeURIComponent(url.pathname.split('/').pop() ?? '');
+        if (filename) {
+          map[filename] = category;
+        }
+      } catch {
+        const fallback = decodeURIComponent(src.split('/').pop() ?? '');
+        if (fallback) {
+          map[fallback] = category;
+        }
+      }
+    });
+    return map;
+  }, [categoryMap]);
+
   const mergedItems = useMemo(
     () =>
-      items.map((item) => {
-        const category = categoryMap[item.src];
+      baseItems.map((item) => {
+        let filename = '';
+        try {
+          const url = new URL(item.src);
+          filename = decodeURIComponent(url.pathname.split('/').pop() ?? '');
+        } catch {
+          filename = decodeURIComponent(item.src.split('/').pop() ?? '');
+        }
+        const category = categoryMap[item.src] ?? (filename ? filenameCategoryMap[filename] : undefined);
         if (!category) return item;
         return {
           ...item,
           tags: [category]
         };
       }),
-    [items, categoryMap]
+    [baseItems, categoryMap, filenameCategoryMap]
   );
 
   const categories = useMemo(() => {
-    const set = new Set<string>();
+    const available = new Set<string>();
     mergedItems.forEach((item) => {
-      item.tags.forEach((tag) => set.add(tag));
+      item.tags.forEach((tag) => available.add(tag));
     });
-    return ['All', ...Array.from(set).sort()];
+    available.delete('Gallery');
+    available.delete('gallery');
+    const extras = Array.from(available).filter(
+      (category) => !DEFAULT_GALLERY_CATEGORIES.includes(category)
+    );
+    return ['All', ...DEFAULT_GALLERY_CATEGORIES, ...extras];
   }, [mergedItems]);
 
   const filteredItems = useMemo(() => {
