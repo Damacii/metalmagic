@@ -16,13 +16,29 @@ type GalleryRow = {
 
 export default function GalleryFilterGrid({ items }: GalleryFilterGridProps) {
   const [storageItems, setStorageItems] = useState<GalleryItem[] | null>(null);
+  const [localItems, setLocalItems] = useState<GalleryItem[] | null>(null);
   const [categoryMap, setCategoryMap] = useState<Record<string, string>>({});
   const [activeFilter, setActiveFilter] = useState('All');
 
   useEffect(() => {
+    let isMounted = true;
+    const loadLocalItems = async () => {
+      try {
+        const response = await fetch('/api/gallery/local', { cache: 'no-store' });
+        if (!response.ok) throw new Error('Failed');
+        const payload = (await response.json()) as { items?: GalleryItem[] };
+        if (!isMounted) return;
+        setLocalItems(payload.items ?? []);
+      } catch {
+        if (!isMounted) return;
+        setLocalItems([]);
+      }
+    };
+
+    loadLocalItems();
+
     if (!supabase) return;
 
-    let isMounted = true;
     const client = supabase;
     const loadStorageItems = async () => {
       const { data, error } = await client.storage.from('Fotos').list('', {
@@ -60,7 +76,12 @@ export default function GalleryFilterGrid({ items }: GalleryFilterGridProps) {
     };
   }, []);
 
-  const baseItems = storageItems ?? items;
+  const baseItems =
+    storageItems && storageItems.length > 0
+      ? storageItems
+      : localItems && localItems.length > 0
+        ? localItems
+        : items;
 
   const filenameCategoryMap = useMemo(() => {
     const map: Record<string, string> = {};
@@ -90,6 +111,9 @@ export default function GalleryFilterGrid({ items }: GalleryFilterGridProps) {
           filename = decodeURIComponent(url.pathname.split('/').pop() ?? '');
         } catch {
           filename = decodeURIComponent(item.src.split('/').pop() ?? '');
+        }
+        if (item.src.startsWith('/gallery/') && item.tags[0] !== 'Gallery') {
+          return item;
         }
         const category = categoryMap[item.src] ?? (filename ? filenameCategoryMap[filename] : undefined);
         if (!category) return item;

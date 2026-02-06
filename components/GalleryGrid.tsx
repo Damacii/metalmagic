@@ -15,9 +15,6 @@ type GalleryGridProps = {
 export default function GalleryGrid({ items }: GalleryGridProps) {
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
   const [hiddenSrcs, setHiddenSrcs] = useState<string[]>([]);
-  const handleContextMenu = (event: MouseEvent) => {
-    event.preventDefault();
-  };
 
   const handleDragStart = (event: DragEvent) => {
     event.preventDefault();
@@ -64,7 +61,6 @@ export default function GalleryGrid({ items }: GalleryGridProps) {
             key={`${item.src}-${index}`}
             type="button"
             onClick={() => setActiveIndex(index)}
-            onContextMenu={handleContextMenu}
             onDragStart={handleDragStart}
             style={{ WebkitTouchCallout: 'none' }}
             className="group relative mb-4 w-full break-inside-avoid overflow-hidden rounded-2xl border border-white/10 bg-white/5 text-left"
@@ -78,7 +74,6 @@ export default function GalleryGrid({ items }: GalleryGridProps) {
               quality={70}
               unoptimized
               draggable={false}
-              onContextMenu={handleContextMenu}
               onDragStart={handleDragStart}
               onError={() =>
                 setHiddenSrcs((prev) => (prev.includes(item.src) ? prev : [...prev, item.src]))
@@ -103,7 +98,6 @@ export default function GalleryGrid({ items }: GalleryGridProps) {
           className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 px-4 py-10"
           role="dialog"
           aria-modal="true"
-          onContextMenu={handleContextMenu}
           style={{ WebkitTouchCallout: 'none' }}
         >
           <button
@@ -125,7 +119,6 @@ export default function GalleryGrid({ items }: GalleryGridProps) {
                 unoptimized
                 loading="eager"
                 draggable={false}
-                onContextMenu={handleContextMenu}
                 onDragStart={handleDragStart}
                 onError={() => {
                   setHiddenSrcs((prev) =>
