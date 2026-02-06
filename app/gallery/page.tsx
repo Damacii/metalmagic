@@ -1,6 +1,5 @@
 import SectionHeading from '@/components/SectionHeading';
 import GalleryFilterGrid from '@/components/GalleryFilterGrid';
-import { galleryItems } from '@/lib/siteConfig';
 
 export const metadata = {
   title: 'Gallery'
@@ -14,7 +13,7 @@ export default function GalleryPage() {
         title="Ironwork details and installs"
         description="Explore examples across fences, gates, railings, security, and custom fabrication."
       />
-      <GalleryFilterGrid items={galleryItems} />
+      <GalleryFilterGrid items={[]} />
     </div>
   );
 }

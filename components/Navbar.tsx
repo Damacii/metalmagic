@@ -1,10 +1,8 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import Link from 'next/link';
-import { ADMIN_EMAIL } from '@/lib/adminConfig';
 import { siteConfig } from '@/lib/siteConfig';
-import { supabase } from '@/lib/supabaseClient';
 
 const navLinks = [
   { label: 'Home', href: '/' },
@@ -16,39 +14,7 @@ const navLinks = [
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
-  const [sessionEmail, setSessionEmail] = useState<string | null>(null);
-
-  useEffect(() => {
-    if (!supabase) return;
-
-    let isMounted = true;
-    const client = supabase;
-
-    const initSession = async () => {
-      const { data } = await client.auth.getSession();
-      if (!isMounted) return;
-      setSessionEmail(data.session?.user?.email ?? null);
-    };
-
-    initSession();
-
-    const { data: subscription } = client.auth.onAuthStateChange(
-      (_event, session) => {
-        setSessionEmail(session?.user?.email ?? null);
-      }
-    );
-
-    return () => {
-      isMounted = false;
-      subscription.subscription.unsubscribe();
-    };
-  }, []);
-
-  const isAdmin = sessionEmail?.toLowerCase() === ADMIN_EMAIL.toLowerCase();
-
-  const desktopLinks = isAdmin
-    ? [...navLinks, { label: 'Admin', href: '/admin' }]
-    : navLinks;
+  const desktopLinks = navLinks;
 
   return (
     <header className="absolute inset-x-0 top-0 z-40 bg-transparent md:sticky md:border-b md:border-white/10 md:bg-gray-300 md:backdrop-blur">
@@ -76,11 +42,6 @@ export default function Navbar() {
           >
             {siteConfig.ctaPrimary}
           </a>
-          {isAdmin ? (
-            <span className="rounded-full border border-[#1B2D5C]/40 bg-white/70 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.3em] text-[#1B2D5C]">
-              Admin
-            </span>
-          ) : null}
         </div>
         <div className="flex items-center gap-2 md:hidden">
           <button

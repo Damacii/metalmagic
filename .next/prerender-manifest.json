@@ -74,54 +74,6 @@
         "x-next-revalidate-tag-token"
       ]
     },
-    "/admin/gallery": {
-      "experimentalBypassFor": [
-        {
-          "type": "header",
-          "key": "next-action"
-        },
-        {
-          "type": "header",
-          "key": "content-type",
-          "value": "multipart/form-data;.*"
-        }
-      ],
-      "initialRevalidateSeconds": false,
-      "srcRoute": "/admin/gallery",
-      "dataRoute": "/admin/gallery.rsc",
-      "allowHeader": [
-        "host",
-        "x-matched-path",
-        "x-prerender-revalidate",
-        "x-prerender-revalidate-if-generated",
-        "x-next-revalidated-tags",
-        "x-next-revalidate-tag-token"
-      ]
-    },
-    "/admin": {
-      "experimentalBypassFor": [
-        {
-          "type": "header",
-          "key": "next-action"
-        },
-        {
-          "type": "header",
-          "key": "content-type",
-          "value": "multipart/form-data;.*"
-        }
-      ],
-      "initialRevalidateSeconds": false,
-      "srcRoute": "/admin",
-      "dataRoute": "/admin.rsc",
-      "allowHeader": [
-        "host",
-        "x-matched-path",
-        "x-prerender-revalidate",
-        "x-prerender-revalidate-if-generated",
-        "x-next-revalidated-tags",
-        "x-next-revalidate-tag-token"
-      ]
-    },
     "/contact": {
       "experimentalBypassFor": [
         {
@@ -280,8 +232,8 @@
   "dynamicRoutes": {},
   "notFoundRoutes": [],
   "preview": {
-    "previewModeId": "8df9a112cb296fd16de89fa06d918365",
-    "previewModeSigningKey": "2c5d412ac85f513e1fa4d54f0a547f761963de3764082bc2e8569f748e1996ce",
-    "previewModeEncryptionKey": "96002cc53dd73240be88e2c6f63c3dfa70b19952aa9c174414ef914aa3974a42"
+    "previewModeId": "e086879f88707e1d9b4ba2429e16815a",
+    "previewModeSigningKey": "9d4840217c655ed0afb61c36ac33b470d0f1f0a56670af3944405ad3cfb14bd9",
+    "previewModeEncryptionKey": "c6bcf95824283013093fb74064cab18b3a08f9ffda6fa0e87570fdd85d1aed4b"
   }
 }

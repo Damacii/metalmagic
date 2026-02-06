@@ -78,7 +78,7 @@ export default function GalleryGrid({ items }: GalleryGridProps) {
               onError={() =>
                 setHiddenSrcs((prev) => (prev.includes(item.src) ? prev : [...prev, item.src]))
               }
-              className="pointer-events-none h-auto w-full select-none transition duration-500 group-hover:scale-[1.02]"
+              className="h-auto w-full select-none transition duration-500 group-hover:scale-[1.02]"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
             <div
@@ -129,7 +129,7 @@ export default function GalleryGrid({ items }: GalleryGridProps) {
                     return visibleItems.length > 1 ? (prev + 1) % visibleItems.length : null;
                   });
                 }}
-                className="pointer-events-none h-auto max-h-[80vh] w-auto max-w-[90vw] select-none rounded-2xl border border-white/10 object-contain"
+                className="h-auto max-h-[80vh] w-auto max-w-[90vw] select-none rounded-2xl border border-white/10 object-contain"
                 priority
               />
               <div

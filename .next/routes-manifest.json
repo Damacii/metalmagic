@@ -47,16 +47,10 @@
       "namedRegex": "^/about(?:/)?$"
     },
     {
-      "page": "/admin",
-      "regex": "^/admin(?:/)?$",
+      "page": "/api/gallery/local",
+      "regex": "^/api/gallery/local(?:/)?$",
       "routeKeys": {},
-      "namedRegex": "^/admin(?:/)?$"
-    },
-    {
-      "page": "/admin/gallery",
-      "regex": "^/admin/gallery(?:/)?$",
-      "routeKeys": {},
-      "namedRegex": "^/admin/gallery(?:/)?$"
+      "namedRegex": "^/api/gallery/local(?:/)?$"
     },
     {
       "page": "/contact",
