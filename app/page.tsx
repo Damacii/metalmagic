@@ -6,6 +6,7 @@ import SectionHeading from '@/components/SectionHeading';
 import TestimonialCard from '@/components/TestimonialCard';
 import ContactForm from '@/components/ContactForm';
 import CTASection from '@/components/CTASection';
+import ServiceImage from '@/components/ServiceImage';
 import { services, siteConfig, testimonials, whyPoints } from '@/lib/siteConfig';
 
 export default function HomePage() {
@@ -44,13 +45,21 @@ export default function HomePage() {
             >
               <div className="flex flex-col gap-6">
                 <div className="overflow-hidden rounded-2xl border border-white/10">
-                  <Image
-                    src={service.imageSrc}
-                    alt={`${service.name} example`}
-                    width={900}
-                    height={700}
-                    className="h-64 w-full object-cover md:h-80"
-                  />
+                  {service.imageFolder ? (
+                    <ServiceImage
+                      folder={service.imageFolder}
+                      fallbackSrc={service.imageSrc}
+                      alt={`${service.name} example`}
+                    />
+                  ) : (
+                    <Image
+                      src={service.imageSrc}
+                      alt={`${service.name} example`}
+                      width={900}
+                      height={700}
+                      className="h-64 w-full object-cover md:h-80"
+                    />
+                  )}
                 </div>
                 <div>
                   <h3 className="font-display text-2xl text-white md:text-3xl">

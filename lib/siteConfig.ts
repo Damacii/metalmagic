@@ -25,37 +25,43 @@ export const services = [
     name: 'Iron Fences',
     description: 'Durable, tailored fences that balance security with curb appeal.',
     projects: ['Perimeter fencing', 'Decorative pickets', 'Property line upgrades'],
-    imageSrc: '/gallery/fence-1.svg'
+    imageSrc: '/gallery/fence-1.svg',
+    imageFolder: 'Fences'
   },
   {
     name: 'Custom Gates',
     description: 'Manual or automated gates built for smooth operation and strength.',
     projects: ['Driveway gates', 'Side yard gates', 'Entry statement pieces'],
-    imageSrc: '/gallery/gate-1.svg'
+    imageSrc: '/gallery/gate-1.svg',
+    imageFolder: 'Gates'
   },
   {
     name: 'Railings & Handrails',
     description: 'Safe, code-aligned rails for stairs, balconies, and walkways.',
     projects: ['Interior stair rails', 'Balcony railings', 'ADA-compliant handrails'],
-    imageSrc: '/gallery/rail-1.svg'
+    imageSrc: '/gallery/rail-1.svg',
+    imageFolder: 'Railing'
   },
   {
     name: 'Window Bars & Security',
     description: 'Low-profile security solutions that protect without blocking views.',
     projects: ['Window guards', 'Security grilles', 'Custom security panels'],
-    imageSrc: '/gallery/security-1.svg'
+    imageSrc: '/gallery/security-1.svg',
+    imageFolder: 'Security'
   },
   {
     name: 'Repairs',
     description: 'On-site fixes for damaged, rusted, or misaligned metalwork.',
     projects: ['Gate hinge repair', 'Fence section replacement', 'Weld reinforcement'],
-    imageSrc: '/gallery/repair-1.svg'
+    imageSrc: '/gallery/repair-1.svg',
+    imageFolder: 'Repairs'
   },
   {
     name: 'Custom Fabrication',
     description: 'One-off metalwork built to spec with a clean, modern finish.',
     projects: ['Architectural accents', 'Brackets and supports', 'Built-to-fit parts'],
-    imageSrc: '/gallery/fab-1.svg'
+    imageSrc: '/gallery/fab-1.svg',
+    imageFolder: 'Gates'
   }
 ];
 

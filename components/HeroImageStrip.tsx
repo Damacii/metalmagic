@@ -1,26 +1,48 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 
-const heroImages = [
-  { name: 'Fence', url: '/gallery/fence-2.svg' },
-  { name: 'Gate', url: '/gallery/gate-2.svg' },
-  { name: 'Railing', url: '/gallery/rail-2.svg' },
-  { name: 'Security', url: '/gallery/security-2.svg' },
-  { name: 'Repairs', url: '/gallery/repair-2.svg' }
-];
+type GalleryItem = {
+  src: string;
+  tags: string[];
+};
+
+const AUTO_ADVANCE_MS = 3500;
 
 export default function HeroImageStrip() {
+  const [items, setItems] = useState<GalleryItem[]>([]);
   const [activeIndex, setActiveIndex] = useState(0);
-  const secondaryIndex = (activeIndex + 1) % heroImages.length;
 
   useEffect(() => {
-    const interval = setInterval(() => {
-      setActiveIndex((prev) => (prev + 1) % heroImages.length);
-    }, 3500);
-
-    return () => clearInterval(interval);
+    let isMounted = true;
+    const load = async () => {
+      try {
+        const response = await fetch('/api/gallery/local', { cache: 'no-store' });
+        const payload = (await response.json()) as { items?: GalleryItem[] };
+        if (!isMounted) return;
+        setItems(payload.items ?? []);
+      } catch {
+        if (!isMounted) return;
+        setItems([]);
+      }
+    };
+    load();
+    return () => {
+      isMounted = false;
+    };
   }, []);
+
+  const visibleItems = useMemo(() => items.filter((item) => !!item.src), [items]);
+  const maxIndex = Math.max(visibleItems.length - 1, 0);
+
+  useEffect(() => {
+    if (visibleItems.length <= 1) return;
+    const interval = window.setInterval(() => {
+      setActiveIndex((prev) => (prev === maxIndex ? 0 : prev + 1));
+    }, AUTO_ADVANCE_MS);
+
+    return () => window.clearInterval(interval);
+  }, [maxIndex, visibleItems.length]);
 
   return (
     <section className="border-b border-white/10 bg-white/10">
@@ -29,7 +51,7 @@ export default function HeroImageStrip() {
           <div className="aspect-square overflow-hidden rounded-2xl border border-white/10">
             <div
               className="h-full w-full bg-cover bg-center"
-              style={{ backgroundImage: `url('${heroImages[activeIndex]?.url}')` }}
+              style={{ backgroundImage: `url('${visibleItems[activeIndex]?.src ?? ''}')` }}
             />
           </div>
         </div>
