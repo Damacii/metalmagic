@@ -1,9 +1,9 @@
 export const siteConfig = {
   name: 'METAL MAGIC ORNAMENTAL INC',
-  phone: '%28619%29 499-3685',
+  phone: '619 499-3685',
   phoneHref: 'tel:6194993685',
   smsHref: 'sms:6194993685',
-  email: 'info@metalmagicinc.com',
+  email: 'vvianey476@gmail.com',
   serviceArea: 'San Diego County, CA',
   hours: 'Mon-Sat 8am-6pm',
   addressLine: 'Serving residential and commercial clients',
