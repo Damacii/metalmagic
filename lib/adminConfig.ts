@@ -5,7 +5,6 @@ export const DEFAULT_GALLERY_CATEGORIES = [
   'Gates',
   'Security',
   'Automatic Gate System',
-  'Motors',
   'Repairs',
   'Others'
 ];
