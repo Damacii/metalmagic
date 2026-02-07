@@ -2,21 +2,13 @@
 
 import { useEffect, useState } from 'react';
 
-const supabaseBaseUrl =
-  process.env.NEXT_PUBLIC_SUPABASE_URL ??
-  'https://qavufnmvclihoacgnsql.supabase.co';
 const heroImages = [
-  'WhatsApp Image 2025-12-13 at 11.43.26 AM (1).jpeg',
-  'WhatsApp Image 2025-12-13 at 11.43.29 AM (3).jpeg',
-  'WhatsApp Image 2025-12-13 at 11.43.29 AM.jpeg',
-  'WhatsApp Image 2025-12-13 at 11.43.31 AM (4).jpeg',
-  'WhatsApp Image 2025-12-13 at 11.43.31 AM.jpeg'
-].map((name) => ({
-  name,
-  url: `${supabaseBaseUrl}/storage/v1/object/public/Fotos/${encodeURIComponent(
-    name
-  )}`
-}));
+  { name: 'Fence', url: '/gallery/fence-2.svg' },
+  { name: 'Gate', url: '/gallery/gate-2.svg' },
+  { name: 'Railing', url: '/gallery/rail-2.svg' },
+  { name: 'Security', url: '/gallery/security-2.svg' },
+  { name: 'Repairs', url: '/gallery/repair-2.svg' }
+];
 
 export default function HeroImageStrip() {
   const [activeIndex, setActiveIndex] = useState(0);

@@ -38,11 +38,11 @@ export default function ServicesPage() {
         ))}
       </div>
 
+      <JobsSlider />
+
       <div className="mt-16">
         <CTASection />
       </div>
-
-      <JobsSlider />
     </div>
   );
 }

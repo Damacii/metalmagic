@@ -17,8 +17,7 @@ export const siteConfig = {
     facebook: 'https://facebook.com/yourpage'
   },
   feedbackUrl: 'https://www.google.com/search?q=metal+magic+ornamental+inc+reviews',
-  servicesCtaImage:
-    'https://qavufnmvclihoacgnsql.supabase.co/storage/v1/object/public/Fotos/WhatsApp%20Image%202025-12-13%20at%2011.55.29%20AM%20%281%29.jpeg'
+  servicesCtaImage: '/gallery/logo metal magic white.png'
 };
 
 export const services = [
@@ -26,43 +25,37 @@ export const services = [
     name: 'Iron Fences',
     description: 'Durable, tailored fences that balance security with curb appeal.',
     projects: ['Perimeter fencing', 'Decorative pickets', 'Property line upgrades'],
-    imageSrc:
-      'https://qavufnmvclihoacgnsql.supabase.co/storage/v1/object/public/Fotos/WhatsApp%20Image%202025-12-13%20at%2011.55.07%20AM%20%281%29.jpeg'
+    imageSrc: '/gallery/fence-1.svg'
   },
   {
     name: 'Custom Gates',
     description: 'Manual or automated gates built for smooth operation and strength.',
     projects: ['Driveway gates', 'Side yard gates', 'Entry statement pieces'],
-    imageSrc:
-      'https://qavufnmvclihoacgnsql.supabase.co/storage/v1/object/public/Fotos/WhatsApp%20Image%202025-12-13%20at%2011.43.28%20AM%20%281%29.jpeg'
+    imageSrc: '/gallery/gate-1.svg'
   },
   {
     name: 'Railings & Handrails',
     description: 'Safe, code-aligned rails for stairs, balconies, and walkways.',
     projects: ['Interior stair rails', 'Balcony railings', 'ADA-compliant handrails'],
-    imageSrc:
-      'https://qavufnmvclihoacgnsql.supabase.co/storage/v1/object/public/Fotos/WhatsApp%20Image%202025-12-13%20at%2011.43.26%20AM%20%281%29.jpeg'
+    imageSrc: '/gallery/rail-1.svg'
   },
   {
     name: 'Window Bars & Security',
     description: 'Low-profile security solutions that protect without blocking views.',
     projects: ['Window guards', 'Security grilles', 'Custom security panels'],
-    imageSrc:
-      'https://qavufnmvclihoacgnsql.supabase.co/storage/v1/object/public/Fotos/WhatsApp%20Image%202025-12-13%20at%2011.55.41%20AM.jpeg'
+    imageSrc: '/gallery/security-1.svg'
   },
   {
     name: 'Repairs',
     description: 'On-site fixes for damaged, rusted, or misaligned metalwork.',
     projects: ['Gate hinge repair', 'Fence section replacement', 'Weld reinforcement'],
-    imageSrc:
-      'https://qavufnmvclihoacgnsql.supabase.co/storage/v1/object/public/Fotos/WhatsApp%20Image%202025-12-13%20at%2011.43.32%20AM.jpeg'
+    imageSrc: '/gallery/repair-1.svg'
   },
   {
     name: 'Custom Fabrication',
     description: 'One-off metalwork built to spec with a clean, modern finish.',
     projects: ['Architectural accents', 'Brackets and supports', 'Built-to-fit parts'],
-    imageSrc:
-      'https://qavufnmvclihoacgnsql.supabase.co/storage/v1/object/public/Fotos/WhatsApp%20Image%202025-12-13%20at%2011.55.13%20AM%20%281%29.jpeg'
+    imageSrc: '/gallery/fab-1.svg'
   }
 ];
 
