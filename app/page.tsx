@@ -7,6 +7,7 @@ import TestimonialCard from '@/components/TestimonialCard';
 import ContactForm from '@/components/ContactForm';
 import CTASection from '@/components/CTASection';
 import ServiceImage from '@/components/ServiceImage';
+import RandomGalleryImage from '@/components/RandomGalleryImage';
 import { services, siteConfig, testimonials, whyPoints } from '@/lib/siteConfig';
 
 export default function HomePage() {
@@ -90,12 +91,9 @@ export default function HomePage() {
         <div className="mt-12 rounded-3xl border border-white/10 bg-white/5 p-6 md:p-10">
           <div className="grid items-center gap-8 lg:grid-cols-[1.1fr_0.9fr]">
             <div className="overflow-hidden rounded-2xl border border-white/10">
-              <Image
-                src={siteConfig.servicesCtaImage}
+              <RandomGalleryImage
+                fallbackSrc={siteConfig.servicesCtaImage}
                 alt="Recent ironwork project"
-                width={900}
-                height={700}
-                className="h-64 w-full object-cover md:h-80"
               />
             </div>
             <div>
