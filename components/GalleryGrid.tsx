@@ -15,6 +15,9 @@ type GalleryGridProps = {
 export default function GalleryGrid({ items }: GalleryGridProps) {
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
   const [hiddenSrcs, setHiddenSrcs] = useState<string[]>([]);
+  const handleContextMenu = (event: MouseEvent) => {
+    event.preventDefault();
+  };
 
   const handleDragStart = (event: DragEvent) => {
     event.preventDefault();
@@ -61,8 +64,9 @@ export default function GalleryGrid({ items }: GalleryGridProps) {
             key={`${item.src}-${index}`}
             type="button"
             onClick={() => setActiveIndex(index)}
+            onContextMenu={handleContextMenu}
             onDragStart={handleDragStart}
-            style={{ WebkitTouchCallout: 'none' }}
+            style={{ WebkitTouchCallout: 'none', WebkitUserSelect: 'none' }}
             className="group relative mb-4 w-full break-inside-avoid overflow-hidden rounded-2xl border border-white/10 bg-white/5 text-left"
           >
             <Image
@@ -74,11 +78,12 @@ export default function GalleryGrid({ items }: GalleryGridProps) {
               quality={70}
               unoptimized
               draggable={false}
+              onContextMenu={handleContextMenu}
               onDragStart={handleDragStart}
               onError={() =>
                 setHiddenSrcs((prev) => (prev.includes(item.src) ? prev : [...prev, item.src]))
               }
-              className="h-auto w-full select-none transition duration-500 group-hover:scale-[1.02]"
+              className="pointer-events-none h-auto w-full select-none transition duration-500 group-hover:scale-[1.02]"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
             <div
@@ -98,7 +103,8 @@ export default function GalleryGrid({ items }: GalleryGridProps) {
           className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 px-4 py-10"
           role="dialog"
           aria-modal="true"
-          style={{ WebkitTouchCallout: 'none' }}
+          onContextMenu={handleContextMenu}
+          style={{ WebkitTouchCallout: 'none', WebkitUserSelect: 'none' }}
         >
           <button
             type="button"
@@ -119,6 +125,7 @@ export default function GalleryGrid({ items }: GalleryGridProps) {
                 unoptimized
                 loading="eager"
                 draggable={false}
+                onContextMenu={handleContextMenu}
                 onDragStart={handleDragStart}
                 onError={() => {
                   setHiddenSrcs((prev) =>
@@ -129,7 +136,7 @@ export default function GalleryGrid({ items }: GalleryGridProps) {
                     return visibleItems.length > 1 ? (prev + 1) % visibleItems.length : null;
                   });
                 }}
-                className="h-auto max-h-[80vh] w-auto max-w-[90vw] select-none rounded-2xl border border-white/10 object-contain"
+                className="pointer-events-none h-auto max-h-[80vh] w-auto max-w-[90vw] select-none rounded-2xl border border-white/10 object-contain"
                 priority
               />
               <div
