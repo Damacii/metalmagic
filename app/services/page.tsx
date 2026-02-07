@@ -1,5 +1,6 @@
 import SectionHeading from '@/components/SectionHeading';
 import CTASection from '@/components/CTASection';
+import JobsSlider from '@/components/JobsSlider';
 import { services } from '@/lib/siteConfig';
 
 export const metadata = {
@@ -40,6 +41,8 @@ export default function ServicesPage() {
       <div className="mt-16">
         <CTASection />
       </div>
+
+      <JobsSlider />
     </div>
   );
 }
