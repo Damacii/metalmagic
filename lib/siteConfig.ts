@@ -24,21 +24,57 @@ export const services = [
   {
     name: 'Iron Fences',
     description: 'Durable, tailored fences that balance security with curb appeal.',
-    projects: ['Perimeter fencing', 'Decorative pickets', 'Property line upgrades'],
+    projects: [
+      'Perimeter fencing',
+      'Decorative pickets',
+      'Property line upgrades',
+      'Custom Work',
+      'Chain Link Fence'
+    ],
     imageSrc: '/gallery/fence-1.svg',
     imageFolder: 'Fences'
   },
   {
     name: 'Custom Gates',
     description: 'Manual or automated gates built for smooth operation and strength.',
-    projects: ['Driveway gates', 'Side yard gates', 'Entry statement pieces'],
+    projects: [
+      'Driveway gates',
+      'Side yard gates',
+      'Entry statement pieces',
+      'Overhead gates',
+      'Sliding gates',
+      'Swing gates',
+      'Security doors',
+      'Folding gates',
+      'Tandem gates'
+    ],
+    imageSrc: '/gallery/gate-1.svg',
+    imageFolder: 'Gates'
+  },
+  {
+    name: 'Gate Openers',
+    description: 'Automation, access control, and service for residential and commercial gates.',
+    projects: [
+      'Liftmaster',
+      'Maxxum',
+      "All o'matic",
+      'Telephone entry system',
+      'Call gates',
+      'Repair',
+      'Conversion'
+    ],
     imageSrc: '/gallery/gate-1.svg',
     imageFolder: 'Gates'
   },
   {
     name: 'Railings & Handrails',
     description: 'Safe, code-aligned rails for stairs, balconies, and walkways.',
-    projects: ['Interior stair rails', 'Balcony railings', 'ADA-compliant handrails'],
+    projects: [
+      'Interior stair rails',
+      'Balcony railings',
+      'ADA-compliant handrails',
+      'Add pickets to existing rails to make up code'
+    ],
     imageSrc: '/gallery/rail-1.svg',
     imageFolder: 'Railing'
   },
