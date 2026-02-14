@@ -61,7 +61,9 @@ export const services = [
       'Telephone entry system',
       'Call gates',
       'Repair',
-      'Conversion'
+      'Conversion',
+      'Solar powered gate opener',
+      'Electric gate opener'
     ],
     imageSrc: '/gallery/gate-1.svg',
     imageFolder: 'Gates'
